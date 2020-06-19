@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+    <ion-buttons slot="primary" >
+      <ion-back-button  defaultHref="logout">Regresar</ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form  #f="ngForm" novalidate  >    
+    <ion-item>
+      <ion-icon name="mail"></ion-icon>
+      <ion-label position="floating" ></ion-label>
+      <ion-input type="text" ngModel name="usuario_correo" placeholder="Correo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="eye"></ion-icon>
+      <ion-label position="floating" ></ion-label>
+      <ion-input type="password" ngModel name="usuario_contrasena" placeholder="Contraseña"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="eye"></ion-icon>
+      <ion-label position="floating" ></ion-label>
+      <ion-input type="password" ngModel name="usuario_contrasena" placeholder="Confirmar Contraseña"></ion-input>
+    </ion-item>
+        
+      <ion-button expand="block" padding color="tertiary" type="submit" > 
+        Guaradr  </ion-button>
+  
+   
+    
+  </form>
+  <ion-button expand="block" padding color="tertiary" type="submit" fill="outline" > Login </ion-button>
+
+
+
+
+
+
+</ion-content>

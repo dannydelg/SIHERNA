@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Candidato</ion-title>
+    <ion-buttons slot="primary" (click)="addCustomer()">
+    	<ion-button color="tertiary" fill="outline">
+    		Nuevo
+    		<ion-icon slot="end" name="add"></ion-icon> 
+    	</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+
+  <ion-list>
+    <ion-item *ngFor="let cand of losCandidatos">
+      <ion-label (click)="datosCandidato(cand.candidato_cedula)">{{cand.candidato_nombre + " " + cand.candidato_apellido}} </ion-label> 
+      
+    </ion-item>
+
+    <ion-item >
+      <ion-label>Selecionar candidato</ion-label>
+				<ion-select okText="Selecionar" cancelText="Salir">
+				  <ion-select-option *ngFor="let cand of losCandidatos">{{cand.candidato_nombre + " " + cand.candidato_apellido}}</ion-select-option>
+				</ion-select>        
+    </ion-item>
+  </ion-list>
+  <ion-item>
+
+  </ion-item>
+
+</ion-content>

@@ -1,0 +1,227 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title >Nueva oferta {{nombre_usuario}} </ion-title>
+    <ion-buttons slot="primary">
+    		<ion-back-button  defaultHref="logout">Regresar</ion-back-button>
+    	</ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+
+  <ion-input></ion-input>
+
+
+
+
+  <form #f="ngForm" novalidate (ngSubmit)="guardarFormulario(f)">
+		<ion-list >
+
+          
+      <ion-item>
+        <ion-label>Selecione categoria</ion-label>  
+              
+          <ion-select okText="Selecionar" cancelText="Salir" ngModel name="categoria" required #cat="ngModel">
+              <ion-select-option *ngFor="let categoria of categorias index as pos" 
+               > {{categoria.categoria_nombre}}   
+              </ion-select-option>               
+            </ion-select>
+           
+
+      </ion-item>
+      <div *ngIf="cat.invalid &&  (cat.dirty || cat.touched || condCategoria)" class="alert-danger" > 
+        Debe seleccionar una categoria. 
+      </div> 
+     
+     
+
+      <ion-item>
+        <ion-label position="floating">Descripión del puesto  </ion-label>
+        <ion-input inputmode="text" ngModel name="descripcion" required #desc="ngModel"></ion-input>  
+      </ion-item>
+    
+     
+        <div *ngIf="desc.invalid && (desc.dirty || desc.touched || condDescripcion)" class="alert-danger" > 
+          Descripción es campo requerido. 
+        </div>        
+
+   
+      
+     <!--  <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="alert-danger">Requerido
+        
+      </div>-->
+
+      <ion-item>
+        <ion-label position="floating">Requisitos  </ion-label>
+        <ion-input inputmode="text" ngModel name="requisito" required #req="ngModel" ></ion-input>  
+      </ion-item>
+      <div *ngIf="req.invalid && (req.dirty || req.touched || condRequisito)" class="alert-danger" > 
+        Requisito es campo requerido. 
+      </div>   
+      <!-- <div *ngIf="requisito.invalid && (descripcion.dirty || descripcion.touched)" class="alert-danger">Requerido
+        
+      </div>-->
+      <ion-item>
+        <ion-label position="floating">Cantidad de vacantes  </ion-label>
+        <ion-input type="number" min="0" max="999" ng-model="example.value" ngModel name="vacantes" required #vacant="ngModel" ></ion-input>  
+      </ion-item>
+      <div *ngIf="vacant.invalid && (vacant.dirty || vacant.touched || condVacante)" class="alert-danger" > 
+        Debe indicar el numero de vacantes. 
+      </div> 
+      <ion-item>
+        <ion-label position="floating">Duración del contrato </ion-label>
+        <ion-input type="text" ngModel name="duracion_contrato" required #duracion="ngModel" ></ion-input>  
+      </ion-item>
+      <div *ngIf="duracion.invalid && (duracion.dirty || duracion.touched )" class="alert-danger" > 
+        Duración del contrato es campo requerido. 
+      </div> 
+
+
+      <ion-item>
+        <ion-label position="floating">Horario </ion-label>
+        <ion-input type="text"  ngModel name="horario" required #horario="ngModel" ></ion-input>  
+      </ion-item>
+      <div *ngIf="horario.invalid && (horario.dirty || horario.touched )" class="alert-danger" > 
+        Horario es campo requerido. 
+      </div> 
+
+      <ion-item>
+        <ion-label position="floating">Salario </ion-label>
+        <ion-input type="number" min="0" max="99999999" ng-model="example.value" ngModel name="salario" required #salario="ngModel" ></ion-input>  
+      </ion-item>
+      <div *ngIf="salario.invalid && (salario.dirty || salario.touched )" class="alert-danger" > 
+        Horario es campo requerido. 
+      </div> 
+      
+
+      
+      <ion-item>
+        <ion-label position="floating">Fecha  </ion-label>
+        <ion-datetime doneText="Selecionar" cancelText="Salir" value="2020-01-01T15:43:40.394Z" 
+        display-timezone="utc" ngModel name="fecha" required #date="ngModel" ></ion-datetime>
+      </ion-item>
+      <div *ngIf="date.invalid && (date.dirty || date.touched || condFecha)" class="alert-danger" > 
+        Fecha es campo requerido. 
+      </div> 
+
+   
+      
+			<ion-item>
+				<ion-label>Selecione el pais</ion-label>             
+            <ion-select okText="Selecionar" cancelText="Salir"  (ionChange)="provinciaSeleccion($event)"
+            (ionChange)="show = !show" ngModel name="pais" required #elPais="ngModel" >{{show ? 'hide' : 'show'}}
+              <ion-select-option *ngFor="let pais of lasOfertas index as pos" 
+             > {{ pais.pais_nombre}}   
+              </ion-select-option> 
+              
+            </ion-select>
+      </ion-item>
+      <div *ngIf="elPais.invalid && (date.dirty || elPais.touched || condUbicacion)" class="alert-danger" > 
+        Pais es campo requerido. 
+      </div> 
+     
+    <div *ngIf="show; else elseBlock1">     
+      <ion-item>
+				<ion-label>Selecione la provincia</ion-label>             
+            <ion-select okText="Selecionar" cancelText="Salir"  (ionChange)="cantonSeleccion($event)" 
+            (ionChange)="show2 = !show2" ngModel name="provincia" required #laProvincia="ngModel">{{show ? 'hide' : 'show'}}
+              <ion-select-option *ngFor="let provincia of lasProvincia"
+              >{{provincia.provincia_nombre}}</ion-select-option> 
+            </ion-select>
+      </ion-item>
+      
+    
+    </div>
+   <ng-template #elseBlock1 >
+    <ion-item>
+      <ion-label>Selecione la provincia</ion-label>             
+          <ion-select okText="Selecionar" cancelText="Salir"  (ionChange)="cantonSeleccion($event)" 
+          (ionChange)="show2 = !show2" ngModel name="provincia" required #laProvincia="ngModel" >{{show ? 'hide' : 'show'}}
+            <ion-select-option *ngFor="let provincia of lasProvincia"
+            >{{provincia.provincia_nombre}}</ion-select-option> 
+          </ion-select>
+    </ion-item>
+
+    <div *ngIf="laProvincia.invalid && (laProvincia.dirty || laProvincia.touched || condUbicacion)" class="alert-danger" > 
+      Pais es campo requerido. 
+    </div> 
+    
+    
+
+  </ng-template>
+  
+
+
+  <div *ngIf="show2; else elseBlock2">
+ 
+      <ion-item>
+				<ion-label>Selecione el Canton</ion-label>             
+            <ion-select okText="Selecionar" cancelText="Salir" (ionChange)="distritoSeleccion($event)" 
+            (ionChange)="show3 = !show3" ngModel name="canton">{{show ? 'hide' : 'show'}} >
+              <ion-select-option *ngFor="let canton of losCantones"
+              >{{canton.canton_nombre}}</ion-select-option> 
+            </ion-select>
+      </ion-item>
+    </div>
+      <ng-template #elseBlock2>
+        <ion-item>
+          <ion-label>Selecione el Canton</ion-label>             
+              <ion-select okText="Selecionar" cancelText="Salir" (ionChange)="distritoSeleccion($event)" 
+              (ionChange)="show3 = !show3" ngModel name="canton">{{show ? 'hide' : 'show'}} >
+                <ion-select-option *ngFor="let canton of losCantones"
+                ngModel name="canton">{{canton.canton_nombre}}</ion-select-option> 
+              </ion-select>
+        </ion-item>
+    </ng-template>
+    
+    <div *ngIf="show3; else elseBlock3"> 
+    <ion-item>
+    <ion-label>Selecione el distrito</ion-label>             
+    <ion-select okText="Selecionar" cancelText="Salir" ngModel name="distrito" >
+      <ion-select-option *ngFor="let distrito of losDistrito">{{distrito.distrito_nombre}}</ion-select-option> 
+    </ion-select>
+    </ion-item>
+  </div>
+
+  
+
+  <ng-template #elseBlock3>
+    <ion-item>
+      <ion-label>Selecione el distrito</ion-label>             
+      <ion-select okText="Selecionar" cancelText="Salir" ngModel name="distrito"  >
+        <ion-select-option *ngFor="let distrito of losDistrito">{{distrito.distrito_nombre}}</ion-select-option> 
+      </ion-select>
+      </ion-item>
+</ng-template>
+
+<ion-item>
+  <ion-label position="floating">Otras señas </ion-label>
+  <ion-input type="text" ng-model="example.value" ngModel name="otras_senas" ></ion-input>  
+</ion-item>
+
+  
+      
+      
+		
+		
+		 <!---	<ion-item>
+				<ion-label position="floating" >foto</ion-label>
+				<ion-input type="file" ngModel name="candidato_foto" >  </ion-input> 
+			</ion-item>	-->
+			
+			<ion-button   expand="block" padding color="tertiary" type="submit" > Guardar </ion-button>
+
+		</ion-list>
+		
+
+  </form>	
+  
+  
+ 
+
+
+
+
+</ion-content>

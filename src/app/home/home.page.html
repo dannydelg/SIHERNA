@@ -1,20 +1,47 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+     SIRHENA
     </ion-title>
+    <ion-label slot="start">SIRHENA</ion-label>
+    <ion-buttons slot="end">
+      
+      <ion-button color="primary" (click)="registroUsuario()">Registrar</ion-button>
+    </ion-buttons>
+   
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Login</ion-title>
     </ion-toolbar>
+    <form  #f="ngForm" novalidate (ngSubmit)="insertarUsuario(f)" >    
+      
+      <ion-item>
+        <ion-icon name="mail"></ion-icon>
+        <ion-label position="floating" ></ion-label>
+        <ion-input type="text" ngModel name="usuario_correo" placeholder="Correo"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="eye"></ion-icon>
+        <ion-label position="floating" ></ion-label>
+        <ion-input type="text" ngModel name="usuario_contrasena" placeholder="Contraseña"></ion-input>
+      </ion-item>
+          
+        <ion-button expand="block" padding color="tertiary" type="submit" > 
+          Ingresar  </ion-button>
+    
+     
+      
+    </form>
+    <ion-button expand="block" padding color="tertiary" type="submit" fill="outline" 
+    (click)="registroUsuario()" > Registrarse </ion-button>
+
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
 </ion-content>

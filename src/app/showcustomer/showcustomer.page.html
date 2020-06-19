@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Datos de candidatos</ion-title>
+    <ion-buttons slot="primary">
+    	<ion-buttons slot="primary">
+    		<ion-back-button  defaultHref="logout">Regresar</ion-back-button>
+    	</ion-buttons>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>{{id}}  </ion-label>
+    <button (click)="datosCandidato(id)"> cargar</button>
+    
+  </ion-item>
+    <ion-item >
+      <ion-label *ngFor="let c of cand">{{ c.candidato_nombre + " " + c.candidato_apellido }}
+				   
+            <p> {{c.candidato_direccion + " " + c.candidato_correo}} </p>
+       
+          </ion-label>
+    </ion-item>
+
+
+
+</ion-content>

@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agregar Candidato</ion-title>
+    	<ion-buttons slot="primary">
+    		<ion-back-button  defaultHref="logout">Regresar</ion-back-button>
+    	</ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+	<form #f="ngForm" novalidate (ngSubmit)="insertarUsuario(f)">
+		<ion-list>
+			<ion-item>
+				<ion-label>Tipo de identificación</ion-label>
+				<ion-select okText="Selecionar" cancelText="Salir" ngModel name="tipousuario">
+				  <ion-select-option value="candidato">Física</ion-select-option>
+				  <ion-select-option value="empresa">Júridica</ion-select-option>
+				 </ion-select>           
+			</ion-item>
+			<ion-item>
+				<ion-icon name="finger-print-outline"></ion-icon>
+				<ion-label position="floating" ></ion-label>
+				<ion-input type="text" ngModel name="cedula" placeholder="Cédula"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-icon name="person" item-start></ion-icon>
+				<ion-label stacked  position="floating"></ion-label>
+				<ion-input type="text" ngModel name="nombre" placeholder="Nombre" ></ion-input>
+			</ion-item>
+		
+			
+			<ion-item>
+				<ion-icon name="home-outline"></ion-icon>
+				<ion-label position="floating" ></ion-label>
+				<ion-input type="text" ngModel name="direccion" placeholder="Dirección" ></ion-input>
+			</ion-item>
+		
+			<ion-item>
+				<ion-icon name="call-outline"></ion-icon>
+				<ion-label position="floating" ></ion-label>
+				<ion-input type="text" ngModel name="telefono" placeholder="Telefono" ></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-icon name="mail" item-start></ion-icon>
+				<ion-label position="floating" ></ion-label>
+				<ion-input type="e-mail" ngModel name="email" placeholder="Correo" ></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-icon name="person-circle-outline"></ion-icon>
+				<ion-label position="floating" ></ion-label>
+				<ion-input type="text" ngModel name="usuario" placeholder="Usuario"></ion-input>
+			</ion-item>
+		
+		
+			<ion-item>
+				<ion-icon name="eye" item-start></ion-icon>
+				<ion-label position="floating" ></ion-label>
+				<ion-input type="password" ngModel name="clave" placeholder="Contraseña"></ion-input>
+			</ion-item>
+		
+		 	  <ion-item>
+				<ion-label position="floating" ></ion-label>	
+				<ion-input type="file" accept="image/*" ngModel name="foto"> </ion-input> <!-- (change)="uploadImage($event)" -->		
+			
+			</ion-item>
+			<ion-item>
+				
+
+			</ion-item>
+			<ion-button expand="block" padding color="tertiary" type="submit" > Guardar </ion-button>
+
+		</ion-list>
+		
+
+	</form>	
+
+	 
+			
+			
+</ion-content>

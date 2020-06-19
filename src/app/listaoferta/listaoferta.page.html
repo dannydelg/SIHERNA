@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lista de oferta </ion-title>
+    <ion-buttons slot="primary">
+      <ion-back-button  defaultHref="logout">Regresar</ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor="let oferta of ofertas">
+    <ion-label (click)="detalleOferta(oferta)" >{{oferta.ofertaEmpleo_descripcionPuesto}} 
+      
+    
+    </ion-label>
+    <ion-button (click)="editarOferta(oferta)" > Editar</ion-button>
+    <ion-button color="danger" (click)="eliminarOferta(oferta)">Eliminar</ion-button>
+ 
+   
+
+  </ion-item>
+
+</ion-content>
