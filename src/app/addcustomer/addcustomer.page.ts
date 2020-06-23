@@ -4,7 +4,7 @@ import { PostProvider } from '../../providers/post_provider';
 import { Router } from '@angular/router';
 import { CandidatoService } from '../services/candidato.service';
 import { Candidato } from './../services/candidato.service';
-import { ModalController, NavController } from '@ionic/angular';
+import { ModalController, NavController, ToastController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { CandidatoModalPage } from './../candidato-modal/candidato-modal.page';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -38,22 +38,49 @@ export class AddcustomerPage implements OnInit {
   private http: HttpClient,
   private router: Router,
   private ref: ChangeDetectorRef,
-  private navCtrl: NavController
+  private navCtrl: NavController,
+  public toastController: ToastController
 ) { }
 
   ngOnInit() {
 // this.service.getAll().subscribe(response => {console.log(response)});
   }
 
-  insertarUsuario(form: NgForm){
-    this.candidato = form.value;
-    this.service.create(this.candidato).subscribe(response => {
-    console.log(response);
-      
-     this.router.navigate(['/home']);
-     this.ref.detectChanges();
 
+
+  insertarUsuario (form: NgForm){
+    if (form.valid){
+      // Si el form es valido lo enviamos al servicio para que lo envia a la base de datos
+ 
+      this.candidato = form.value;
+      this.service.create(this.candidato).subscribe(response => {
+      console.log(response);
+        
+       this.router.navigate(['/home']);
+       this.ref.detectChanges();
+  
+      });
+  
+     
+  
+  
+    }else{      
+     // Si el form no es valido le enviamos las notificaciones al usuario 
+      this.presentToast();
+    }
+
+  }
+ 
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      header: 'Formulario invalido ',
+      message: 'Campos requeridos, revise el formulario',
+      color: 'danger',
+      position: 'middle',
+      duration: 2000
     });
+    toast.present();
   }
 
 

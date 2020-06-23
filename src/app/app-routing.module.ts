@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./showcustomer/showcustomer.module').then( m => m.ShowcustomerPageModule)
   },
   {
-    path: 'candidato-modal',
+    path: 'candidato-modal/:oferta',
     loadChildren: () => import('./candidato-modal/candidato-modal.module').then( m => m.CandidatoModalPageModule)
   },
   {
@@ -35,6 +35,13 @@ const routes: Routes = [
     path: 'oferta/:usuario',
     loadChildren: () => import('./oferta/oferta.module').then( m => m.OfertaPageModule)
   },
+
+  {
+    path: 'oferta/:idOferta',
+    loadChildren: () => import('./oferta/oferta.module').then( m => m.OfertaPageModule)
+  },
+
+
   {
     path: 'foto',
     loadChildren: () => import('./foto/foto.module').then( m => m.FotoPageModule)
@@ -50,6 +57,18 @@ const routes: Routes = [
   {
     path: 'listaoferta/:idusuario',
     loadChildren: () => import('./listaoferta/listaoferta.module').then( m => m.ListaofertaPageModule)
+  },
+  {
+    path: 'requisito/:idoferta',
+    loadChildren: () => import('./requisito/requisito.module').then( m => m.RequisitoPageModule)
+  },
+  {
+    path: 'ofertamodificar/:idusuario',
+    loadChildren: () => import('./ofertamodificar/ofertamodificar.module').then( m => m.OfertamodificarPageModule)
+  },
+  {
+    path: 'ofertadetalle/:oferta',
+    loadChildren: () => import('./ofertadetalle/ofertadetalle.module').then( m => m.OfertadetallePageModule)
   },
 ];
 

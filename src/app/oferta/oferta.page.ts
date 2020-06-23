@@ -38,19 +38,23 @@ export class OfertaPage implements OnInit {
   idusuario: string;
   nombre_usuario: string;
   usuario_empresa: Usuario;
+  
+
 
   constructor(private service: OfertaService,
      public toastController: ToastController,
      private router: Router,
      private route: ActivatedRoute
               ) {
-                this.idusuario = this.route.snapshot.paramMap.get('usuario');
+                
+                  this.idusuario = this.route.snapshot.paramMap.get('usuario');
+              
                }
 
   ngOnInit() {
     this.service.getUsuario(this.idusuario).subscribe( resp => {
-      
-      this.usuario_empresa = resp;
+     
+        this.usuario_empresa = resp;
       this.nombre_usuario = this.usuario_empresa.usuario_nombreReal;
       this.idusuario = this.usuario_empresa.usuario_id;
       console.log('resp' + this.usuario_empresa.usuario_nombreReal );
@@ -132,12 +136,7 @@ export class OfertaPage implements OnInit {
     console.log(this.id[0]);
   }
 
-  createFromGroup(){
-    return new FormGroup({
-      requisito: new FormControl('', Validators.required),
-      descripcion: new FormControl('', Validators.required)
-    });
-  }
+
 
   BuscarIdDistrito(distrito: string, list: any  ){
 
@@ -188,7 +187,7 @@ export class OfertaPage implements OnInit {
         console.log(response);
         this.confirmacionToast();
         
-        this.router.navigate(['/menuempresa', this.idusuario]);
+        this.router.navigate(['/requisito', this.idusuario]);
         
   
       });

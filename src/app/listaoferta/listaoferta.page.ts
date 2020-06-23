@@ -11,6 +11,8 @@ export class ListaofertaPage implements OnInit {
 
   id: string;
   ofertas: NuevaOferta[];
+  idOfertaModificar: number;
+  usuarioEmpresa: string;
   constructor(private route: ActivatedRoute,
               private service: OfertaService,
               private router: Router
@@ -23,13 +25,22 @@ export class ListaofertaPage implements OnInit {
   ngOnInit() {
     this.service.getOferta(this.id).subscribe(resp => {
       this.ofertas = resp;
-      console.log(this.ofertas);
+      this.id = this.ofertas[0].ofertaEmpleo_id;
+      
+          console.log(resp);
     });
+    this.service.getUsuario(this.id).subscribe( resp => {
+     
+      this.usuarioEmpresa = resp.usuario_nombreReal;
+
+
+  });
     
   }
-  detalleOferta(oferta: string){
-    console.log(oferta);
-    //this.router.navigate(['/candidato-modal', oferta]);
+  addRequisito(oferta: NuevaOferta){
+   // this.idOfertaModificar = parseInt(this.id);
+    // console.log(this.idOfertaModificar);
+    this.router.navigate(['/requisito', oferta.ofertaempleo_id ]);
 
   }
   eliminarOferta(oferta: NuevaOferta ){
@@ -37,7 +48,15 @@ export class ListaofertaPage implements OnInit {
   }
 
   editarOferta(oferta: NuevaOferta ){
-    console.log(oferta.ofertaEmpleo_id);
+   
+     console.log(oferta.ofertaempleo_id);
+    this.router.navigate(['/ofertamodificar', oferta.ofertaempleo_id]);
+
+  }
+
+  detalleOferta(oferta: NuevaOferta ){
+    
+    this.router.navigate(['/ofertadetalle', oferta.ofertaempleo_id]);
   }
 
 

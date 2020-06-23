@@ -1,23 +1,40 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Lista de oferta </ion-title>
+    <ion-title>Ofertas de: {{usuarioEmpresa}} </ion-title>
     <ion-buttons slot="primary">
-      <ion-back-button  defaultHref="logout">Regresar</ion-back-button>
+      <ion-back-button text="Regresar" color="tertiary">Regresar</ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item *ngFor="let oferta of ofertas">
-    <ion-label (click)="detalleOferta(oferta)" >{{oferta.ofertaEmpleo_descripcionPuesto}} 
-      
-    
-    </ion-label>
-    <ion-button (click)="editarOferta(oferta)" > Editar</ion-button>
-    <ion-button color="danger" (click)="eliminarOferta(oferta)">Eliminar</ion-button>
- 
    
+    
+       
+  <ion-item-sliding *ngFor="let oferta of ofertas">
+    <ion-item-options side="start">
+      <ion-item-option  color="tertiary" (click)="editarOferta(oferta)">Editar</ion-item-option>
+      <ion-item-option color="secondary" (click)="addRequisito(oferta)">Requisitos</ion-item-option>
+    </ion-item-options>
 
-  </ion-item>
+    <ion-item>
+      <ion-label (click)="detalleOferta(oferta)" >{{oferta.ofertaEmpleo_descripcionPuesto }} </ion-label>
+      <P>{{oferta.ofertaEmpleo_Salario}}</P>
+    </ion-item>
 
+    <ion-item-options side="end">
+      <ion-item-option color="danger" (click)="eliminarOferta(oferta)">
+        <ion-icon name="trash-outline"></ion-icon></ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+        
+
+        
+    
+       
+
+
+
+   
+    
 </ion-content>

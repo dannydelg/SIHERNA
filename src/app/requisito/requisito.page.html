@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Requisito  </ion-title>
+    <ion-buttons slot="primary">
+      <ion-back-button  defaultHref="listaoferta">Regresar</ion-back-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form #f="ngForm" novalidate (ngSubmit)="guaradarRequisito(f)">
+		<ion-list >
+
+          
+      <ion-item>
+				<ion-label>Tipo de requisito</ion-label>
+				<ion-select okText="Selecionar" cancelText="Salir" ngModel name="requisito_tipo" required #tiporeq="ngModel">
+				  <ion-select-option value="minimo">Obligtorio</ion-select-option>
+				  <ion-select-option value="deseable">Desable</ion-select-option>
+				 </ion-select>           
+			</ion-item>
+      <div *ngIf="tiporeq.invalid &&  (tiporeq.dirty || tiporeq.touched )" class="alert-danger" > 
+        Debe seleccionar un tipo de requisito. 
+      </div> 
+     
+     
+
+      <ion-item>
+        <ion-label position="floating">Descripión del requisito  </ion-label>
+        <ion-input inputmode="text" ngModel name="requisito_descripcion" required #req_desc="ngModel"></ion-input>  
+      </ion-item>
+    
+     
+        <div *ngIf="req_desc.invalid && (req_desc.dirty || req_desc.touched )" class="alert-danger" > 
+          Descripción es campo requerido. 
+        </div>        
+
+   
+      
+
+      <ion-item>
+        <ion-label position="floating">Experiencia laboral  </ion-label>
+        <ion-input type="number" min="0" max="999" ng-model="example.value"
+         ngModel name="requisitos_experienciaLaboral" required #exp_laboral="ngModel" ></ion-input>  
+      </ion-item>
+      <div *ngIf="exp_laboral.invalid && (exp_laboral.dirty || exp_laboral.touched)" class="alert-danger" > 
+        Debe los meses de esperiancia. 
+      </div> 
+
+      <ion-item>
+				<ion-label>Clase de requisito</ion-label>
+        <ion-select okText="Selecionar" cancelText="Salir" ngModel name="requisito_clase" 
+        required #clase_req="ngModel">
+				  <ion-select-option value="IDIOMA">Idioma</ion-select-option>
+				  <ion-select-option value="Estudio">Estudio</ion-select-option>
+				 </ion-select>           
+			</ion-item>
+      <div *ngIf="clase_req.invalid &&  (clase_req.dirty || clase_req.touched )" class="alert-danger" > 
+        Debe seleccionar una calse de requisito. 
+      </div> 
+
+      <ion-item>
+        <ion-label position="floating">Requisito </ion-label>
+        <ion-input type="text" ngModel name="nivelEstudio_descripcion" required #nivel_est="ngModel" ></ion-input>  
+      </ion-item>
+      <div *ngIf="nivel_est.invalid && (nivel_est.dirty || nivel_est.touched )" class="alert-danger" > 
+       Rquisito es campo requerido. 
+      </div> 
+      <ion-item>
+				<ion-label>Nivel de idioma</ion-label>
+        <ion-select okText="Selecionar" cancelText="Salir" ngModel name="idioma_nivel" 
+        required #nivel="ngModel">
+				  <ion-select-option value="basico">Básico</ion-select-option>
+          <ion-select-option value="intermedio">Intermedio</ion-select-option>
+          <ion-select-option value="intermedio">Azanzado</ion-select-option>
+				 </ion-select>           
+			</ion-item>
+      <div *ngIf="nivel.invalid &&  (nivel.dirty || nivel.touched )" class="alert-danger" > 
+        Debe seleccionar una calse de requisito. 
+      </div> 
+
+
+
+      
+      
+		
+		
+		 <!---	<ion-item>
+				<ion-label position="floating" >foto</ion-label>
+				<ion-input type="file" ngModel name="candidato_foto" >  </ion-input> 
+			</ion-item>	-->
+			
+			<ion-button   expand="block" padding color="tertiary" type="submit" > Guardar </ion-button>
+
+		</ion-list>
+		
+
+  </form>	
+
+</ion-content>

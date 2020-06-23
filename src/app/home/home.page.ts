@@ -46,6 +46,7 @@ export class HomePage {
         console.log(this.usuario.usuario_id);
       }else{
 
+        this.router.navigate(['/menucandidato']);
       }
       
       

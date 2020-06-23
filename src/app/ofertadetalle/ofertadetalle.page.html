@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> {{ofertaNombreEmpresa}} </ion-title>
+    <ion-buttons slot="primary">
+      <ion-back-button text="Regresar" color="tertiary">Regresar</ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-grid>
+
+      <ion-row>
+        <h3>Categoria: {{categoria}}</h3>
+      </ion-row>
+      <ion-row>
+        <h4>Descripcion: {{ofertaDescripcion}}</h4>
+      </ion-row>
+      
+      <ion-row >
+      
+          <p>Duración de contrato: {{duracionContrato}}</p>
+          <p>Horario: {{horarioOferta}}</p>
+          <p>Salario: {{ofertaSalari}}</p>
+          <p>Fecha: {{fecha}}</p>
+          <p>Vacantes: {{cantVacantes}}</p>
+          <p>Ubicación:  {{pais +", "+ provincia + ", "+ canton }}</p>   
+             
+      </ion-row>
+    </ion-grid>       
+
+  </ion-item>
+  <h4>Requisitos:</h4>
+
+  
+  <ion-item *ngFor="let req of losRequisitos">
+   
+      
+        <ion-option >{{req.nivelEstudio_descripcion}}</ion-option>
+            
+  </ion-item>
+
+
+
+  <ion-button expand="block" (click)="crearPdf()">Crear PDF</ion-button>
+  <ion-button expand="block" (click)="descargarPdf()" color="secondary">Descargar PDF</ion-button>
+    
+    
+  
+      
+
+</ion-content>

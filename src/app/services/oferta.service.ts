@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { NodeCompatibleEventEmitter } from 'rxjs/internal/observable/fromEvent';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { Usuario } from './usuario.service';
+import { Requisito } from './requisito.service';
 
 
 
@@ -37,10 +38,25 @@ export interface NuevaOferta{
   oferta_categoriaid: number;
   ofertaEmpleo_descripcionPuesto: string;
   ofertaEmpleo_id: string;
+  ofertaEmpleo_numeroVacantes: string;
+  ofertaEmpleo_Salario: string;
+  ofertaempleo_id: string;
+  ofertaEmpleo_duracionContrato: string;
+  usuario_nombreReal: string;
+  ofertaEmpleo_horario: string;
+  ofertaEmpleo_fecha: string;
+  pais_nombre: string;
+  provincia_nombre: string;
+  canton_nombre: string;
+  distrito_nombre: string;
+  usuario_nombreUsuario: string;
+  
+
+  
   
 
   pais_id: string;
-  pais_nombre: string;
+  
 }
 
 export interface Provincias{
@@ -110,4 +126,9 @@ export class OfertaService {
   getOferta(id: string){
     return this.http.get<[NuevaOferta]>(this.url + '/?user_id=' + id);
   }
+  getOfertaDetalle(id: string){
+    return this.http.get<NuevaOferta>(this.url + '/?ofer_id=' + id);
+  }
+
+
 }

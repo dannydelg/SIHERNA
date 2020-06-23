@@ -1,29 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title >Oferta {{nombre_usuario}} </ion-title>
+    <ion-title>Modificar oferta {{ofertaNombreEmpresa}} </ion-title>
     <ion-buttons slot="primary">
-    		<ion-back-button  defaultHref="logout">Regresar</ion-back-button>
+      <ion-back-button text="Regresar" color="tertiary">Regresar</ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-
-
 <ion-content>
-
-  <ion-input></ion-input>
-
-
-
 
   <form #f="ngForm" novalidate (ngSubmit)="guardarFormulario(f)">
 		<ion-list >
 
-          
       <ion-item>
         <ion-label>Selecione categoria</ion-label>  
               
-          <ion-select okText="Selecionar" cancelText="Salir" ngModel name="categoria" required #cat="ngModel">
+          <ion-select currentValue="{{categoria}}" okText="Selecionar" cancelText="Salir" ngModel name="categoria" required #cat="ngModel">
               <ion-select-option *ngFor="let categoria of categorias index as pos" 
                > {{categoria.categoria_nombre}}   
               </ion-select-option>               
@@ -39,7 +31,8 @@
 
       <ion-item>
         <ion-label position="floating">Descripión del puesto  </ion-label>
-        <ion-input inputmode="text" ngModel name="descripcion" required #desc="ngModel"></ion-input>  
+        <ion-input inputmode="text" ngModel name="descripcion" required #desc="ngModel"
+         value="{{ofertaDescripcion}}" ></ion-input>  
       </ion-item>
     
      
@@ -55,7 +48,8 @@
 
       <ion-item>
         <ion-label position="floating">Requisitos  </ion-label>
-        <ion-input inputmode="text" ngModel name="requisito" required #req="ngModel" ></ion-input>  
+        <ion-input inputmode="text" ngModel name="requisito" required #req="ngModel"
+        value="" ></ion-input>  
       </ion-item>
       <div *ngIf="req.invalid && (req.dirty || req.touched || condRequisito)" class="alert-danger" > 
         Requisito es campo requerido. 
@@ -65,33 +59,37 @@
       </div>-->
       <ion-item>
         <ion-label position="floating">Cantidad de vacantes  </ion-label>
-        <ion-input type="number" min="0" max="999" ng-model="example.value" ngModel name="vacantes" required #vacant="ngModel" ></ion-input>  
+        <ion-input type="number" min="0" max="999" ng-model="example.value"
+         ngModel name="vacantes" required #vacant="ngModel" value="{{cantVacantes}}" ></ion-input>  
       </ion-item>
-      <div *ngIf="vacant.invalid && (vacant.dirty || vacant.touched || condVacante)" class="alert-danger" > 
+      <div *ngIf="vacant.invalid && (vacant.touched || condVacante)" class="alert-danger" > 
         Debe indicar el numero de vacantes. 
       </div> 
       <ion-item>
         <ion-label position="floating">Duración del contrato </ion-label>
-        <ion-input type="text" ngModel name="duracion_contrato" required #duracion="ngModel" ></ion-input>  
+        <ion-input type="text" ngModel name="duracion_contrato" required #duracion="ngModel" 
+        value="{{duracionContrato}}"></ion-input>  
       </ion-item>
-      <div *ngIf="duracion.invalid && (duracion.dirty || duracion.touched )" class="alert-danger" > 
+      <div *ngIf="duracion.invalid && ( duracion.touched )" class="alert-danger" > 
         Duración del contrato es campo requerido. 
       </div> 
 
 
       <ion-item>
         <ion-label position="floating">Horario </ion-label>
-        <ion-input type="text"  ngModel name="horario" required #horario="ngModel" ></ion-input>  
+        <ion-input type="text"  ngModel name="horario" required #horario="ngModel"
+        value="{{horarioOferta}}" ></ion-input>  
       </ion-item>
-      <div *ngIf="horario.invalid && (horario.dirty || horario.touched )" class="alert-danger" > 
+      <div *ngIf="horario.invalid && ( horario.touched )" class="alert-danger" > 
         Horario es campo requerido. 
       </div> 
 
       <ion-item>
         <ion-label position="floating">Salario </ion-label>
-        <ion-input type="number" min="0" max="99999999" ng-model="example.value" ngModel name="salario" required #salario="ngModel" ></ion-input>  
+        <ion-input type="number" min="0" max="99999999" ng-model="example.value" 
+        ngModel name="salario" required #salario="ngModel"  value="{{ofertaSalari}}" ></ion-input>  
       </ion-item>
-      <div *ngIf="salario.invalid && (salario.dirty || salario.touched )" class="alert-danger" > 
+      <div *ngIf="salario.invalid && (salario.touched )" class="alert-danger" > 
         Horario es campo requerido. 
       </div> 
       
@@ -100,9 +98,10 @@
       <ion-item>
         <ion-label position="floating">Fecha  </ion-label>
         <ion-datetime doneText="Selecionar" cancelText="Salir" value="2020-01-01T15:43:40.394Z" 
-        display-timezone="utc" ngModel name="fecha" required #date="ngModel" ></ion-datetime>
+        display-timezone="utc" ngModel name="fecha" required #date="ngModel" 
+        value="{{fecha}}"></ion-datetime>
       </ion-item>
-      <div *ngIf="date.invalid && (date.dirty || date.touched || condFecha)" class="alert-danger" > 
+      <div *ngIf="date.invalid && ( date.touched || condFecha)" class="alert-danger" > 
         Fecha es campo requerido. 
       </div> 
 
@@ -110,11 +109,13 @@
       
 			<ion-item>
 				<ion-label>Selecione el pais</ion-label>             
-            <ion-select okText="Selecionar" cancelText="Salir"  (ionChange)="provinciaSeleccion($event)"
+            <ion-select value="{{pais}}" okText="Selecionar" cancelText="Salir"  (ionChange)="provinciaSeleccion($event)"
             (ionChange)="show = !show" ngModel name="pais" required #elPais="ngModel" >{{show ? 'hide' : 'show'}}
               <ion-select-option *ngFor="let pais of lasOfertas index as pos" 
-             > {{ pais.pais_nombre}}   
+             
+              > {{ pais.pais_nombre}}   
               </ion-select-option> 
+           
               
             </ion-select>
       </ion-item>
@@ -211,17 +212,20 @@
 				<ion-input type="file" ngModel name="candidato_foto" >  </ion-input> 
 			</ion-item>	-->
 			
-			<ion-button   expand="block" padding color="tertiary" type="submit" > Guardar </ion-button>
+			<ion-button   expand="block" padding color="tertiary" type="submit" > Modificar </ion-button>
 
 		</ion-list>
 		
 
   </form>	
   
+
+
+
+
+
+
   
- 
-
-
 
 
 </ion-content>

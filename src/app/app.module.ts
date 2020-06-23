@@ -15,11 +15,21 @@ import { CandidatoModalPage } from './candidato-modal/candidato-modal.page';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera/ngx';
-import { File } from '@ionic-native/file/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+
+
+
+
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { PdfMakeWrapper } from 'pdfmake-wrapper';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+
+// Set the fonts to use
+PdfMakeWrapper.setFonts(pdfFonts);
+
 
 @NgModule({
   declarations: [AppComponent, CandidatoModalPage],
@@ -28,7 +38,7 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx';
 
   BrowserModule,
   HttpClientModule,
-
+  
   FormsModule,
   ReactiveFormsModule,
   RouterModule,
@@ -41,7 +51,7 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx';
     PostProvider,
     SplashScreen,
     Camera,
-    File,
+    FileOpener,
     WebView,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
